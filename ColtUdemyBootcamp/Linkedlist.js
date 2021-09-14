@@ -10,6 +10,14 @@ class LinkedList {
         this.head = null;
         this.tail = null;
     }
+    
+    pprint() {
+        let temp = this.head;
+        while (temp != null) {
+            console.log(temp.data, '---> ')
+            temp = temp.next;
+        }
+    }
 
     push(val) { //APPEND A VALUE
         let node = new Node(val);
@@ -69,11 +77,15 @@ class LinkedList {
         return returnVal;
     }
 
-    pprint() {
-        let temp = this.head;
-        while (temp != null) {
-            console.log(temp.data, '---> ')
-            temp = temp.next;
+    unshift(val){ //Insert in the beginning
+        let node = new Node(val);
+        if(this.head === null){//No element
+                this.head = node;
+                this.tail = node;
+        }
+        else{ //One element
+            node.next = this.head;
+            this.head = node;
         }
     }
 }
