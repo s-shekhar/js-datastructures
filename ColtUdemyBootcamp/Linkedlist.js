@@ -13,10 +13,12 @@ class LinkedList {
     
     pprint() {
         let temp = this.head;
+        let string = '';
         while (temp != null) {
-            console.log(temp.data, '---> ')
+            string += temp.data + ' ---> ';
             temp = temp.next;
         }
+        console.log(string)
     }
 
     push(val) { //APPEND A VALUE
@@ -88,6 +90,51 @@ class LinkedList {
             this.head = node;
         }
     }
+
+    get(index){
+        // let retVal = null;
+        let temp = this.head;
+        for(let i = 0; i<index && temp !== null ; i++){
+            temp = temp.next;
+        }
+        return temp? temp.data : null;
+    }
+
+    set(index,val){ //Change the value at a given index
+        let i = 0;
+        let temp = this.head;
+        while(i !== index && temp !== null){
+            temp = temp.next;
+            i++;
+        }
+        if(temp !== null) {
+            temp.data = val;
+        }
+    }
+
+    insert(index,val){
+        let node = new Node(val);
+        if(this.head === null && index === 0){
+            this.head = node;
+            this.tail = node;
+        }
+        else{
+            let i = 0;
+            let temp = this.head;
+            while(i !== index-1 && temp !== null){ //index-1 since we need temp just before the index
+                i++;
+                temp = temp.next;
+            }
+            if(temp === null) return null;
+            else{
+                if(temp.next === null){  //Last node
+                    this.tail = node;
+                }
+                node.next = temp.next;
+                temp.next = node;
+            }
+        }
+    }
 }
 
 let ll = new LinkedList();
@@ -96,11 +143,22 @@ ll.push(3);
 ll.push(4);
 ll.push(5);
 ll.push(6);
+ll.push(7);
+
+// ll.pprint();
+// console.log("POPPING ", ll.pop());
+// ll.pprint();
+// console.log("SHIFTING ",ll.shift());
+// ll.push(88);
+// console.log("SHIFTING ",ll.shift());
+// ll.pprint();
+
+ll.insert(5,88)
+ll.insert(5,44)
 
 ll.pprint();
-console.log("POPPING ", ll.pop());
-ll.pprint();
-console.log("SHIFTING ",ll.shift());
-ll.push(88);
-console.log("SHIFTING ",ll.shift());
+
+ll.set(2,64)
+
+
 ll.pprint();
