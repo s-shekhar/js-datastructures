@@ -140,46 +140,46 @@ class LinkedList {
     }
 
 
-    remove(index){ //REMOVE A NODE FROM GIVEN INDEX
+    remove(index) { //REMOVE A NODE FROM GIVEN INDEX
         if (index < 0) {
             console.log("Index value cannot be negative ");
             return
         }
-        
-        if(this.head === null) return null; // no element
-        else if(this.head === this.tail && index === 0){ // 1 element and that is to be removed
+
+        if (this.head === null) return null; // no element
+        else if (this.head === this.tail && index === 0) { // 1 element and that is to be removed
             this.head = null;
             this.tail = null;
         }
-        else if(index === 0){ //Remove head
+        else if (index === 0) { //Remove head
             this.head = this.head.next;
         }
-        else{
+        else {
             let i = 1;
             let temp = this.head;
 
-            while(temp.next.next !== null && i !== index){
+            while (temp.next.next !== null && i !== index) {
                 temp = temp.next;
                 i++;
             }
-            if(i === index){
+            if (i === index) {
                 temp.next = temp.next.next;
             }
-            else{ //Since temp.next.next === null, we need to delete tail
+            else { //Since temp.next.next === null, we need to delete tail
                 temp.next = null;
                 this.tail = temp;
             }
         }
     }
 
-    reverse(){ //REVERSE A LINKED LIST IN PLACE
+    reverse() { //REVERSE A LINKED LIST IN PLACE
         let p1 = this.head;
         let p2 = p1.next;
         let p3 = p2.next;
 
-        while(p3 !== null){
+        while (p3 !== null) {
             p2.next = p1;
-            if(p1 === this.head){
+            if (p1 === this.head) {
                 p1.next = null;
                 this.tail = p1;
             }
