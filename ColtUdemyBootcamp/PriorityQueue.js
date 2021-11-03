@@ -40,7 +40,7 @@ class PriorityQueue {
     }
 
     dequeue() { //GIVE THE HIGHEST PRIORITY (i.e having least priority number)
-        if (!this.heap.length) return null;
+        if (!this.heap.length) return new Node(null, null);
         else if (this.heap.length === 1) return this.heap.shift();
         else {
             let retVal = this.heap[0];
@@ -49,14 +49,14 @@ class PriorityQueue {
             while (true) {
                 let leftChildIndex = 2 * parentIndex + 1
                 let rightChildIndex = 2 * parentIndex + 2
-                console.log(this.heap[parentIndex].val)
+                // console.log(this.heap[parentIndex].val)
                 if (this.heap[parentIndex].priority <= ((this.heap[leftChildIndex] && this.heap[leftChildIndex].priority) || Infinity) && this.heap[parentIndex].priority <= ((this.heap[rightChildIndex] && this.heap[rightChildIndex].priority) || Infinity)) {
                     //That means perfect position found for the Node
-                    console.log("Breaking");
+                    // console.log("Breaking");
                     break;
                 }
                 else {
-                    if ((this.heap[leftChildIndex] && this.heap[leftChildIndex].priority || null) < (this.heap[rightChildIndex] && this.heap[rightChildIndex].priority || null)) {
+                    if ((this.heap[leftChildIndex] && this.heap[leftChildIndex].priority || Infinity) < (this.heap[rightChildIndex] && this.heap[rightChildIndex].priority || Infinity)) {
                         // console.log("Switching ", this.heap[parentIndex], this.heap[leftChildIndex]);
                         if (this.heap[leftChildIndex] != null)
                             [this.heap[parentIndex], this.heap[leftChildIndex]] = [this.heap[leftChildIndex], this.heap[parentIndex]]
@@ -97,5 +97,3 @@ console.log(PQ.print())
 
 
 console.log(PQ.dequeue().val);
-
-console.log(PQ.print())
