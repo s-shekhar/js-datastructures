@@ -8,28 +8,29 @@
  * @return {number[][]}
  */
 var subsets = function (nums) {
-    let result = [];
+
+    const result = [];
 
     function dfs(i, curArr) {
-        //Base case
         if (i > nums.length) return;
-        if (i === nums.length) {
-            result.push([...curArr]);
-            return;
-        }
 
-        //DFS helper
-        dfs(i + 1, curArr);
-        curArr.push(nums[i]);
-        dfs(i + 1, curArr);
-        curArr.pop();
+        result.push([...curArr]);
+
+        for (let j = i; j < nums.length; j++) {
+            curArr.push(nums[j]);
+            dfs(j + 1, curArr);
+            curArr.pop();
+        }
     }
-    dfs(0, [])
+
+    dfs(0, []);
 
     return result;
 };
 
 // console.log(subsets([1, 2, 3]));
+
+//Another approach in the end of document. Named Alter Subsets I
 
 
 // █▀ █░█ █▄▄ █▀ █▀▀ ▀█▀ █▀   █ █
@@ -382,3 +383,36 @@ var partition = function (s) {
 };
 
 // console.log(partition("aab"));
+
+
+
+
+//===========================ALTERNATE APPROACH==================================//
+
+//ALTER SUBSETS I
+
+// /**
+//  * @param {number[]} nums
+//  * @return {number[][]}
+//  */
+//  var subsets = function (nums) {
+//     let result = [];
+
+//     function dfs(i, curArr) {
+//         //Base case
+//         if (i > nums.length) return;
+//         if (i === nums.length) {
+//             result.push([...curArr]);
+//             return;
+//         }
+
+//         //DFS helper
+//         dfs(i + 1, curArr);
+//         curArr.push(nums[i]);
+//         dfs(i + 1, curArr);
+//         curArr.pop();
+//     }
+//     dfs(0, [])
+
+//     return result;
+// };
